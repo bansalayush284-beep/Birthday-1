@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Mrs. Sandhya Bansal ❤️</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+overflow:hidden;
+background:linear-gradient(135deg,#ff4d88,#ff99cc,#ffe6f2);
+height:100vh;
+color:white;
+text-align:center;
+}
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+pointer-events:none;
+}
+
+.container{
+position:relative;
+z-index:2;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+height:100vh;
+padding:20px;
+}
+
+h1{
+font-size:3rem;
+text-shadow:0 0 15px white;
+animation:pulse 2s infinite;
+}
+
+h2{
+margin-top:10px;
+font-size:1.6rem;
+}
+
+#gift{
+margin-top:40px;
+width:150px;
+height:150px;
+cursor:pointer;
+animation:bounce 2s infinite;
+}
+
+#message{
+display:none;
+max-width:700px;
+background:rgba(255,255,255,.15);
+backdrop-filter:blur(8px);
+padding:20px;
+border-radius:20px;
+margin-top:20px;
+}
+
+#typing{
+font-size:18px;
+line-height:1.8;
+min-height:200px;
+}
+
+button{
+margin-top:20px;
+padding:12px 28px;
+border:none;
+border-radius:30px;
+font-size:18px;
+cursor:pointer;
+background:white;
+color:#ff2d75;
+font-weight:bold;
+}
+
+#slideshow{
+margin-top:20px;
+width:220px;
+height:280px;
+border-radius:20px;
+border:4px solid white;
+object-fit:cover;
+display:none;
+box-shadow:0 0 20px white;
+}
+
+.heart{
+position:absolute;
+color:red;
+font-size:24px;
+animation:float 7s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);opacity:0;}
+20%{opacity:1;}
+100%{transform:translateY(-120px);opacity:0;}
+}
+
+@keyframes bounce{
+50%{transform:translateY(-15px);}
+}
+
+@keyframes pulse{
+50%{transform:scale(1.05);}
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="fireworks"></canvas>
+
+<div class="container">
+
+<h1>🎂 Happy Birthday 🎂</h1>
+
+<h2>❤️ Mrs. Sandhya Bansal ❤️</h2>
+
+<p style="margin-top:15px;font-size:18px;">
+Click the Gift to Open Your Surprise 🎁
+</p>
+
+<img
+id="gift"
+src="https://cdn-icons-png.flaticon.com/512/869/869869.png"
+onclick="openGift()">
+
+<div id="message">
+
+<img
+id="slideshow"
+src="photo1.jpg">
+
+<div id="typing"></div>
+
+<button onclick="proposal()">
+💖 Click One Last Time 💖
+</button>
+
+</div>
+
+</div>
+
+<audio id="music" controls style="display:none;">
+<source src="love.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+const text=`My Dearest Sandhya ❤️
+
+Happy Birthday to the most beautiful girl in my life.
+
+You are my biggest blessing.
+
+Every smile of yours makes my day brighter.
+
+Thank you for loving me.
+
+I promise to stand beside you in every situation.
+
+May God always keep you happy,
+healthy and successful.
+
+You are my today,
+my tomorrow,
+and my forever.
+
+I Love You Endless...
+
+Forever Yours,
+Ayush ❤️`;
+
+let index=0;
+
+function openGift(){
+
+document.getElementById("gift").style.display="none";
+
+document.getElementById("message").style.display="block";
+
+document.getElementById("slideshow").style.display="block";
+
+document.getElementById("music").play();
+
+typeWriter();
+
+startSlide();
+
+fireworks();
+
+}
+
+function typeWriter(){
+
+if(index<text.length){
+
+document.getElementById("typing").innerHTML+=text.charAt(index);
+
+index++;
+
+setTimeout(typeWriter,40);
+
+}
+
+}
+
+const images=[
+"photo1.jpg",
+"photo2.jpg",
+"photo3.jpg"
+];
+
+let img=0;
+
+function startSlide(){
+
+setInterval(()=>{
+
+img=(img+1)%images.length;
+
+document.getElementById("slideshow").src=images[img];
+
+},2500);
+
+}
+
+setInterval(()=>{
+
+const h=document.createElement("div");
+
+h.className="heart";
+
+h.innerHTML="❤️";
+
+h.style.left=Math.random()*100+"vw";
+
+h.style.fontSize=(20+Math.random()*20)+"px";
+
+document.body.appendChild(h);
+
+setTimeout(()=>h.remove(),7000);
+
+},250);
+
+function proposal(){
+
+alert(
+"❤️ Mrs. Sandhya Bansal ❤️\n\nWill You Stay With Me Forever?\n\nI Love You ❤️"
+);
+
+}
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+
+function resizeCanvas(){
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+function fireworks(){
+
+setInterval(()=>{
+
+let x=Math.random()*canvas.width;
+let y=Math.random()*canvas.height*0.7;
+
+for(let i=0;i<35;i++){
+
+setTimeout(()=>{
+
+ctx.beginPath();
+
+ctx.arc(
+x+(Math.random()-0.5)*120,
+y+(Math.random()-0.5)*120,
+Math.random()*4+2,
+0,
+Math.PI*2
+);
+
+ctx.fillStyle=`hsl(${Math.random()*360},100%,60%)`;
+
+ctx.fill();
+
+},i*15);
+
+}
+
+setTimeout(()=>{
+ctx.clearRect(0,0,canvas.width,canvas.height);
+},900);
+
+},1800);
+
+}
+
+</script>
+
+</body>
+</html>
